@@ -2,12 +2,14 @@ const bodyParser = require('body-parser');
 const express = require('express')
 const mysql = require('mysql')
 const cors = require('cors')
+require('dotenv').config()
+
 
 const connection = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'password',
-    database:'users_posts'
+    host:process.env.DB_HOST,
+    user:process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_DATABASE
 })
 connection.connect()
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
